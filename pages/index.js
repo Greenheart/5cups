@@ -7,7 +7,7 @@ export default function Home() {
     const types = ['Physical', 'Emotional', 'Social', 'Cognitive', 'Spiritual']
 
     return (
-        <div className="font-thin tracking-wide text-sm">
+        <div className="font-thin tracking-wide text-sm select-none">
             <Head>
                 <title>5 cups</title>
             </Head>
@@ -21,6 +21,11 @@ export default function Home() {
                     ))}
                 </div>
             </main>
+
+            {/* IDEA: Add save button, which adds current entry to localStorage with timestamp and teh 5 cup values */}
+            {/* IDEA: Make it possible to expand a list with previous entries */}
+            {/* IDEA: When clicking a previous entry, the state from those cups are shown */}
+            {/* IDEA: When clicking a previous entry, the date and time for the entry is shown below the heading (without affecting layout) */}
 
             <footer className="flex justify-center items-center mt-32">
                 <a href="https://29k.org" className="flex items-center">
