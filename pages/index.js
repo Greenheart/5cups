@@ -39,7 +39,7 @@ export default function Home() {
 
             <main className="text-center">
                 <h1 className="text-4xl font-black mt-16">5 cups</h1>
-                <p className="my-4">
+                <p className="my-4 h-5">
                     {entry && entry.date ? formatDate(entry.date) : null}
                 </p>
 
