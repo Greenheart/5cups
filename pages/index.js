@@ -51,6 +51,10 @@ export default function Home() {
         <div className="font-thin tracking-wide text-sm sm:text-base md:text-lg select-none">
             <Head>
                 <title>5 cups</title>
+                <meta
+                    name="viewport"
+                    content="initial-scale=1.0, user-scalable=no width=device-width"
+                />
             </Head>
 
             {entry ? (
