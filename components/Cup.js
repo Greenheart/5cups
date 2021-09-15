@@ -23,12 +23,10 @@ export default function Cup({ type, defaultValue }) {
                 ref={cupRef}
                 onPointerDown={handleClick}
             >
-                {value ? (
-                    <span
-                        className="bg-blue-400 rounded-t-none rounded-b-md shadow-sm transition-all duration-[250ms] ease-out"
-                        style={{ height: value + '%' }}
-                    />
-                ) : null}
+                <span
+                    className="bg-blue-400 rounded-t-none rounded-b-md shadow-sm transition-all duration-[250ms] ease-out"
+                    style={{ height: (value ? value : 0.00001) + '%' }}
+                />
             </div>
             {type}
         </div>
