@@ -110,7 +110,7 @@ export default function Home() {
                             Inspired by
                             <div className="ml-2 flex items-center">
                                 <img
-                                    src="/29k.jpg"
+                                    src="./29k.jpg"
                                     alt="29k Logo"
                                     rel="preload"
                                     width={32}
