@@ -17,7 +17,7 @@ export default function Cup({ type, defaultValue }) {
 
     // IDEA: add possibility to drag to change the value quickly with touch devices
     return (
-        <div className="flex flex-col items-center capitalize-first">
+        <div className="flex flex-col items-center">
             <div
                 className="h-24 w-14 2xs:h-24 2xs:w-16 sm:h-32 sm:w-20 bg-white shadow-md rounded-md mb-4 flex flex-col justify-end cursor-pointer hover:shadow-lg"
                 ref={cupRef}
@@ -28,7 +28,7 @@ export default function Cup({ type, defaultValue }) {
                     style={{ height: (value ? value : 0.00001) + '%' }}
                 />
             </div>
-            {type}
+            <span className="capitalize-first">{type}</span>
         </div>
     )
 }
