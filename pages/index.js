@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 import Cup from '../components/Cup'
@@ -106,10 +105,10 @@ export default function Home() {
                         <a href="https://29k.org" className="flex items-center">
                             Inspired by
                             <div className="ml-2 flex items-center">
-                                <Image
+                                <img
                                     src="/29k.jpg"
                                     alt="29k Logo"
-                                    priority
+                                    rel="preload"
                                     width={32}
                                     height={32}
                                 />
