@@ -19,12 +19,12 @@ export default function Cup({ type, defaultValue }) {
     return (
         <div className="flex flex-col items-center">
             <div
-                className="h-24 w-14 2xs:h-24 2xs:w-16 sm:h-32 sm:w-20 bg-white shadow-md rounded-md mb-4 flex flex-col justify-end cursor-pointer hover:shadow-lg"
+                className="overflow-hidden h-24 w-14 2xs:h-24 2xs:w-16 sm:h-32 sm:w-20 bg-white shadow-md rounded-md mb-4 flex flex-col justify-end cursor-pointer hover:shadow-lg"
                 ref={cupRef}
                 onPointerDown={handleClick}
             >
                 <span
-                    className="bg-blue-400 rounded-t-none rounded-b-md shadow-sm transition-all duration-[250ms] ease-out"
+                    className="bg-blue-400 rounded-b-md shadow-sm transition-all duration-[250ms] ease-out"
                     style={{ height: (value ? value : 0.00001) + '%' }}
                 />
             </div>
