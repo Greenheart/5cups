@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 
-export default function Cup({ type, defaultValue = 30 }) {
+export default function Cup({ type, defaultValue }) {
     const [value, setValue] = useState(defaultValue)
     const cupRef = useRef(null)
 
@@ -17,7 +17,7 @@ export default function Cup({ type, defaultValue = 30 }) {
 
     // IDEA: add possibility to drag to change the value quickly with touch devices
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center capitalize-first">
             <div
                 className="h-24 w-14 2xs:h-24 2xs:w-16 sm:h-32 sm:w-20 bg-white shadow-md rounded-md mb-4 flex flex-col justify-end"
                 ref={cupRef}
