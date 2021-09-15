@@ -47,7 +47,7 @@ export default function Home() {
                                 : null}
                         </p>
 
-                        <div className="grid grid-cols-5 gap-2 max-w-xl mx-auto px-2 mt-16">
+                        <div className="grid grid-cols-5 gap-2 max-w-xl mx-auto px-2 mt-12">
                             {types.map((type) => (
                                 <Cup
                                     type={type}
@@ -62,6 +62,9 @@ export default function Home() {
                     {/* IDEA: Make it possible to expand a list with previous entries */}
                     {/* IDEA: When clicking a previous entry, the state from those cups are shown */}
                     {/* IDEA: When clicking a previous entry, the date and time for the entry is shown below the heading (without affecting layout) */}
+
+                    {/* IDEA: Add short text about checking in based on how you feel */}
+                    {/* IDEA: The save button should have the copy "Check in" */}
 
                     <footer className="flex justify-center items-center mt-32">
                         <a href="https://29k.org" className="flex items-center">

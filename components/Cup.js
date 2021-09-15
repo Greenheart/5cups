@@ -19,7 +19,7 @@ export default function Cup({ type, defaultValue }) {
     return (
         <div className="flex flex-col items-center capitalize-first">
             <div
-                className="h-24 w-14 2xs:h-24 2xs:w-16 sm:h-32 sm:w-20 bg-white shadow-md rounded-md mb-4 flex flex-col justify-end"
+                className="h-24 w-14 2xs:h-24 2xs:w-16 sm:h-32 sm:w-20 bg-white shadow-md rounded-md mb-4 flex flex-col justify-end cursor-pointer hover:shadow-lg"
                 ref={cupRef}
                 onPointerDown={handleClick}
             >
