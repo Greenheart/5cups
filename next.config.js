@@ -1,4 +1,7 @@
+const basePath = '/5cups'
+
 module.exports = {
     reactStrictMode: true,
-    basePath: '/5cups',
+    basePath,
+    assetPrefix: basePath + '/',
 }
