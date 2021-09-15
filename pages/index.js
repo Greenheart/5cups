@@ -32,7 +32,7 @@ export default function Home() {
     }, [])
 
     return (
-        <div className="font-thin tracking-wide text-sm select-none">
+        <div className="font-thin tracking-wide text-sm sm:text-base md:text-lg select-none">
             <Head>
                 <title>5 cups</title>
             </Head>
@@ -43,13 +43,16 @@ export default function Home() {
                         <h1 className="text-4xl font-black mt-16">
                             Your 5 cups
                         </h1>
-                        <p className="my-4 h-5">
+                        <p className="my-4 h-4 text-xs">
                             {entry && entry.date
                                 ? formatDate(entry.date)
                                 : null}
                         </p>
+                        <p className="my-4 h-5 font-normal">
+                            Fill them in based on how you feel.
+                        </p>
 
-                        <div className="grid grid-cols-5 gap-2 max-w-xl mx-auto px-2 mt-12">
+                        <div className="grid grid-cols-5 gap-2 max-w-md sm:max-w-xl mx-auto px-2 mt-12">
                             {types.map((type) => (
                                 <Cup
                                     type={type}
