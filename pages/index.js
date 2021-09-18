@@ -1,17 +1,8 @@
 import Head from 'next/head'
-import { useEffect, useContext } from 'react'
+import { useContext } from 'react'
 
 import Cup from '../components/Cup'
 import { types, GlobalContext } from '../GlobalState'
-
-const createEntry = () => {
-    const entry = { date: new Date() }
-
-    for (const type of types) {
-        entry[type] = 0.00001
-    }
-    return entry
-}
 
 const formatDate = (date) => {
     return new Intl.DateTimeFormat('en-GB', {
@@ -32,7 +23,7 @@ export default function Home() {
 
         entries.push({
             ...cupValues,
-            date: date.toISOString(),
+            date: new Date().toISOString(),
         })
 
         localStorage.entries = JSON.stringify(entries)
@@ -40,6 +31,11 @@ export default function Home() {
         // Reset current entry
         resetCupValues()
     }
+
+    // const csv = `
+    // physical;emotional;social;cognitive;spiritual;date;
+    // 73;23;34;57;12;2021-09-18T14:34:34.445Z;
+    // `
 
     return (
         <div className="font-thin tracking-wide text-sm sm:text-base md:text-lg select-none">
@@ -78,12 +74,14 @@ export default function Home() {
                         >
                             Check in
                         </button>
-                        <button
-                            className="block mx-auto py-1 px-4 bg-red-400 rounded-md mt-12 active:bg-red-500 font-bold tracking-wide text-sm"
-                            onClick={() => (localStorage.entries = '')}
-                        >
-                            Reset entries
-                        </button>
+                        {process.env.NODE_ENV !== 'production' ? (
+                            <button
+                                className="block mx-auto py-1 px-4 bg-red-400 rounded-md mt-4 active:bg-red-500 font-bold tracking-wide text-sm"
+                                onClick={() => (localStorage.entries = '')}
+                            >
+                                Reset entries
+                            </button>
+                        ) : null}
                     </main>
 
                     {/* IDEA: Add save button, which adds current entry to localStorage with timestamp and teh 5 cup values */}
@@ -102,6 +100,7 @@ export default function Home() {
                                     src="./29k.jpg"
                                     alt="29k Logo"
                                     rel="preload"
+                                    className="rounded-full"
                                     width={32}
                                     height={32}
                                 />
