@@ -84,14 +84,9 @@ export default function Home() {
                         ) : null}
                     </main>
 
-                    {/* IDEA: Add save button, which adds current entry to localStorage with timestamp and teh 5 cup values */}
                     {/* IDEA: Make it possible to expand a list with previous entries */}
                     {/* IDEA: When clicking a previous entry, the state from those cups are shown */}
                     {/* IDEA: When clicking a previous entry, the date and time for the entry is shown below the heading (without affecting layout) */}
-
-                    {/* IDEA: Add short text about checking in based on how you feel */}
-                    {/* IDEA: The save button should have the copy "Check in" */}
-
                     <footer className="flex justify-center items-center mt-32">
                         <a href="https://29k.org" className="flex items-center">
                             Inspired by
