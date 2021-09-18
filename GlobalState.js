@@ -11,7 +11,7 @@ export const types = [
     'spiritual',
 ]
 
-function GlobalState() {
+function GlobalState({ children }) {
     function getDefaultCupValues() {
         return types.reduce((cupValues, type) => {
             cupValues[type] = defaultValue
@@ -44,7 +44,7 @@ function GlobalState() {
                 resetCupValues,
             }}
         >
-            {props.children}
+            {children}
         </GlobalContext.Provider>
     )
 }
