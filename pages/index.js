@@ -87,7 +87,7 @@ export default function Home() {
                     {/* IDEA: Make it possible to expand a list with previous entries */}
                     {/* IDEA: When clicking a previous entry, the state from those cups are shown */}
                     {/* IDEA: When clicking a previous entry, the date and time for the entry is shown below the heading (without affecting layout) */}
-                    <footer className="flex justify-center items-center mt-32">
+                    <footer className="flex justify-center items-center mt-32 pb-8">
                         <a href="https://29k.org" className="flex items-center">
                             Inspired by
                             <div className="ml-2 flex items-center">
