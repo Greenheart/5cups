@@ -11,7 +11,7 @@ export const types = [
     'spiritual',
 ]
 
-function GlobalState(props) {
+function GlobalState() {
     function getDefaultCupValues() {
         return types.reduce((cupValues, type) => {
             cupValues[type] = defaultValue
