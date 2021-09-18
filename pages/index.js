@@ -1,16 +1,14 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useEffect, useContext } from 'react'
 
 import Cup from '../components/Cup'
-
-const defaultValue = 0.00001
-const types = ['physical', 'emotional', 'social', 'cognitive', 'spiritual']
+import { types, GlobalContext } from '../GlobalState'
 
 const createEntry = () => {
     const entry = { date: new Date() }
 
     for (const type of types) {
-        entry[type] = defaultValue
+        entry[type] = 0.00001
     }
     return entry
 }
@@ -24,28 +22,24 @@ const formatDate = (date) => {
 }
 
 export default function Home() {
-    const [entry, setEntry] = useState()
+    const { cupValues, date, resetCupValues } = useContext(GlobalContext)
 
-    useEffect(() => {
-        setEntry(createEntry())
-    }, [])
+    const handleCheckIn = () => {
+        let entries = []
+        try {
+            entries = JSON.parse(localStorage.entries)
+        } catch (_) {}
 
-    // const handleCheckIn = () => {
-    //     let entries = []
-    //     try {
-    //         entries = JSON.parse(localStorage.entries)
-    //     } catch (_) {}
+        entries.push({
+            ...cupValues,
+            date: date.toISOString(),
+        })
 
-    //     entries.push({
-    //         ...entry,
-    //         date: entry.date.toISOString(),
-    //     })
+        localStorage.entries = JSON.stringify(entries)
 
-    //     localStorage.entries = JSON.stringify(entries)
-
-    //     // Reset current entry
-    //     setEntry(createEntry())
-    // }
+        // Reset current entry
+        resetCupValues()
+    }
 
     return (
         <div className="font-thin tracking-wide text-sm sm:text-base md:text-lg select-none">
@@ -57,17 +51,13 @@ export default function Home() {
                 />
             </Head>
 
-            {entry ? (
+            {cupValues ? (
                 <>
                     <main className="text-center">
                         <h1 className="text-4xl font-black mt-16">
                             Your 5 cups
                         </h1>
-                        <p className="my-4 h-4 text-sm">
-                            {entry && entry.date
-                                ? formatDate(entry.date)
-                                : null}
-                        </p>
+                        <p className="my-4 h-4 text-sm">{formatDate(date)}</p>
                         <p className="my-4 h-5">
                             Fill them in based on how you feel.
                         </p>
@@ -77,24 +67,23 @@ export default function Home() {
                                 <Cup
                                     type={type}
                                     key={type}
-                                    defaultValue={entry[type]}
-                                    value={entry[type]}
+                                    value={cupValues[type]}
                                 />
                             ))}
                         </div>
 
-                        {/* <button
+                        <button
                             className="py-3 px-12 bg-green-400 rounded-md mt-12 active:bg-green-500 font-bold tracking-wide text-base"
                             onClick={handleCheckIn}
                         >
                             Check in
-                        </button> */}
-                        {/* <button
+                        </button>
+                        <button
                             className="block mx-auto py-1 px-4 bg-red-400 rounded-md mt-12 active:bg-red-500 font-bold tracking-wide text-sm"
                             onClick={() => (localStorage.entries = '')}
                         >
-                            Reset entry
-                        </button> */}
+                            Reset entries
+                        </button>
                     </main>
 
                     {/* IDEA: Add save button, which adds current entry to localStorage with timestamp and teh 5 cup values */}

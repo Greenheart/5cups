@@ -1,18 +1,19 @@
-import { useRef, useState } from 'react'
+import { useRef, useContext } from 'react'
 
-export default function Cup({ type, defaultValue }) {
-    const [value, setValue] = useState(defaultValue)
+import { GlobalContext } from '../GlobalState'
+
+export default function Cup({ type }) {
+    const { cupValues, setCupValue } = useContext(GlobalContext)
     const cupRef = useRef(null)
 
     const handleClick = (e) => {
-        cupRef.current.getBoundingClientRect()
         const rect = cupRef.current.getBoundingClientRect()
         const elementY = e.clientY - rect.top
         const updated = Math.round(
             ((rect.height - elementY) / rect.height) * 100,
         )
 
-        setValue(updated)
+        setCupValue(type, updated)
     }
 
     // IDEA: add possibility to drag to change the value quickly with touch devices
@@ -25,7 +26,7 @@ export default function Cup({ type, defaultValue }) {
             >
                 <span
                     className="bg-blue-400 rounded-b-md shadow-sm transition-all duration-[250ms] ease-out"
-                    style={{ height: (value ? value : 0.00001) + '%' }}
+                    style={{ height: cupValues[type] + '%' }}
                 />
             </div>
             <span className="capitalize-first">{type}</span>
