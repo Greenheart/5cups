@@ -2,7 +2,6 @@ import { useState, createContext } from 'react'
 
 export const GlobalContext = createContext()
 
-export const defaultValue = 0.00001
 export const types = [
     'physical',
     'emotional',
@@ -14,7 +13,7 @@ export const types = [
 function GlobalState({ children }) {
     function getDefaultCupValues() {
         return types.reduce((cupValues, type) => {
-            cupValues[type] = defaultValue
+            cupValues[type] = 1
             return cupValues
         }, {})
     }

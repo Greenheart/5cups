@@ -28,7 +28,6 @@ export default function Home() {
 
         localStorage.entries = JSON.stringify(entries)
 
-        // Reset current entry
         resetCupValues()
     }
 
@@ -60,11 +59,7 @@ export default function Home() {
 
                         <div className="grid grid-cols-5 gap-2 max-w-md sm:max-w-xl mx-auto px-2 mt-12">
                             {types.map((type) => (
-                                <Cup
-                                    type={type}
-                                    key={type}
-                                    value={cupValues[type]}
-                                />
+                                <Cup key={type} />
                             ))}
                         </div>
 
