@@ -13,31 +13,10 @@ const formatDate = (date) => {
 }
 
 export default function Home() {
-    const { cupValues, date, resetCupValues } = useContext(GlobalContext)
-
-    const handleCheckIn = () => {
-        let entries = []
-        try {
-            entries = JSON.parse(localStorage.entries)
-        } catch (_) {}
-
-        entries.push({
-            ...cupValues,
-            date: new Date().toISOString(),
-        })
-
-        localStorage.entries = JSON.stringify(entries)
-
-        resetCupValues()
-    }
-
-    // const csv = `
-    // physical;emotional;social;cognitive;spiritual;date;
-    // 73;23;34;57;12;2021-09-18T14:34:34.445Z;
-    // `
+    const { cupValues, date } = useContext(GlobalContext)
 
     return (
-        <div className="font-thin tracking-wide text-sm sm:text-base md:text-lg select-none">
+        <div className="font-thin tracking-wide text-lg select-none">
             <Head>
                 <title>5 cups</title>
                 <meta
@@ -48,41 +27,40 @@ export default function Home() {
 
             {cupValues ? (
                 <>
-                    <main className="text-center">
+                    <main className="text-center px-2">
                         <h1 className="text-4xl font-black mt-16">
                             Your 5 cups
                         </h1>
-                        <p className="my-4 h-4 text-sm">{formatDate(date)}</p>
-                        <p className="my-4 h-5">
+                        <p className="mt-4">{formatDate(date)}</p>
+                        <p className="mt-2">
                             Fill them in based on how you feel.
                         </p>
 
-                        <div className="grid grid-cols-5 gap-2 max-w-md sm:max-w-xl mx-auto px-2 mt-12">
+                        <div className="grid grid-cols-5 gap-2 max-w-md sm:max-w-xl mx-auto my-12">
                             {types.map((type) => (
-                                <Cup key={type} />
+                                <Cup key={type} type={type} />
                             ))}
                         </div>
 
-                        <button
-                            className="py-3 px-12 bg-green-400 rounded-md mt-12 active:bg-green-500 font-bold tracking-wide text-base"
-                            onClick={handleCheckIn}
+                        <div
+                            className={
+                                'transition-all duration-[250] ease-out ' +
+                                types.every((type) => cupValues[type])
+                                    ? 'visible'
+                                    : 'invisible'
+                            }
                         >
-                            Check in
-                        </button>
-                        {process.env.NODE_ENV !== 'production' ? (
-                            <button
-                                className="block mx-auto py-1 px-4 bg-red-400 rounded-md mt-4 active:bg-red-500 font-bold tracking-wide text-sm"
-                                onClick={() => (localStorage.entries = '')}
-                            >
-                                Reset entries
-                            </button>
-                        ) : null}
+                            <h2 className="text-lg font-black">
+                                Thank you for checking in!
+                            </h2>
+                            <p className="text-lg mt-2">
+                                Now, what can you do for yourself in the next 5
+                                minutes?
+                            </p>
+                        </div>
                     </main>
 
-                    {/* IDEA: Make it possible to expand a list with previous entries */}
-                    {/* IDEA: When clicking a previous entry, the state from those cups are shown */}
-                    {/* IDEA: When clicking a previous entry, the date and time for the entry is shown below the heading (without affecting layout) */}
-                    <footer className="flex justify-center items-center mt-32 pb-8">
+                    <footer className="flex justify-center items-center mt-12 pb-8">
                         <a href="https://29k.org" className="flex items-center">
                             Inspired by
                             <div className="ml-2 flex items-center">

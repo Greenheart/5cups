@@ -13,7 +13,7 @@ export const types = [
 function GlobalState({ children }) {
     function getDefaultCupValues() {
         return types.reduce((cupValues, type) => {
-            cupValues[type] = 1
+            cupValues[type] = -1
             return cupValues
         }, {})
     }
