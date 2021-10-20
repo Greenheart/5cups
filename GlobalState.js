@@ -11,14 +11,15 @@ export const types = [
 ]
 
 function GlobalState({ children }) {
-    function getDefaultCupValues() {
+    function getDefaultCupValues(defaultValue = 1) {
         return types.reduce((cupValues, type) => {
-            cupValues[type] = -1
+            cupValues[type] = defaultValue
             return cupValues
         }, {})
     }
 
     const [cupValues, setCupValues] = useState(getDefaultCupValues())
+    const [touched, setTouched] = useState(getDefaultCupValues(false))
     const [date, setDate] = useState(new Date())
 
     function setCupValue(type, value) {
@@ -26,10 +27,15 @@ function GlobalState({ children }) {
             ...cupValues,
             [type]: value,
         })
+        setTouched({
+            ...touched,
+            [type]: true,
+        })
     }
 
     function resetCupValues() {
         setCupValues(getDefaultCupValues())
+        setTouched(getDefaultCupValues(false))
     }
 
     return (
@@ -40,6 +46,7 @@ function GlobalState({ children }) {
                 setCupValues,
                 date,
                 setDate,
+                touched,
                 resetCupValues,
             }}
         >

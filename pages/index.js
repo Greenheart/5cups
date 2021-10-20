@@ -13,7 +13,7 @@ const formatDate = (date) => {
 }
 
 export default function Home() {
-    const { cupValues, date } = useContext(GlobalContext)
+    const { cupValues, date, touched } = useContext(GlobalContext)
 
     return (
         <div className="font-thin tracking-wide text-lg select-none">
@@ -44,10 +44,9 @@ export default function Home() {
 
                         <div
                             className={
-                                'transition-all duration-[250] ease-out ' +
-                                types.every((type) => cupValues[type])
-                                    ? 'visible'
-                                    : 'invisible'
+                                types.every((type) => touched[type])
+                                    ? ''
+                                    : 'hidden'
                             }
                         >
                             <h2 className="text-lg font-black">
