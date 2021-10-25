@@ -1,11 +1,10 @@
-import { useContext } from 'react'
 import { SliderInput, SliderTrack, SliderRange } from '@reach/slider'
 import '@reach/slider/styles.css'
 
-import { GlobalContext } from '../GlobalState'
+import useCups from './useCups'
 
 export default function Cup({ type }) {
-    const { cupValues, setCupValue } = useContext(GlobalContext)
+    const { cupValues, setCupValue } = useCups()
 
     return (
         <div className="flex flex-col justify-between items-center">

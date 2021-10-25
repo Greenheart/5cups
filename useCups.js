@@ -1,6 +1,4 @@
-import { useState, createContext } from 'react'
-
-export const GlobalContext = createContext()
+import { useState } from 'preact/compat'
 
 export const types = [
     'physical',
@@ -10,7 +8,7 @@ export const types = [
     'spiritual',
 ]
 
-function GlobalState({ children }) {
+export default function useCups() {
     function getDefaultCupValues(defaultValue = 1) {
         return types.reduce((cupValues, type) => {
             cupValues[type] = defaultValue
@@ -38,21 +36,13 @@ function GlobalState({ children }) {
         setTouched(getDefaultCupValues(false))
     }
 
-    return (
-        <GlobalContext.Provider
-            value={{
-                cupValues,
-                setCupValue,
-                setCupValues,
-                date,
-                setDate,
-                touched,
-                resetCupValues,
-            }}
-        >
-            {children}
-        </GlobalContext.Provider>
-    )
+    return {
+        cupValues,
+        setCupValue,
+        setCupValues,
+        date,
+        setDate,
+        touched,
+        resetCupValues,
+    }
 }
-
-export default GlobalState

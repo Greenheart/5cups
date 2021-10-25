@@ -1,8 +1,5 @@
-import Head from 'next/head'
-import { useContext } from 'react'
-
-import Cup from '../components/Cup'
-import { types, GlobalContext } from '../GlobalState'
+import Cup from './Cup'
+import useCups, { types } from './useCups'
 
 const formatDate = (date) => {
     return new Intl.DateTimeFormat('en-GB', {
@@ -12,19 +9,11 @@ const formatDate = (date) => {
     }).format(date)
 }
 
-export default function Home() {
-    const { cupValues, date, touched } = useContext(GlobalContext)
+export const App = () => {
+    const { cupValues, date, touched } = useCups()
 
     return (
         <div className="font-thin tracking-wide text-lg select-none">
-            <Head>
-                <title>5 cups</title>
-                <meta
-                    name="viewport"
-                    content="initial-scale=1.0, user-scalable=no width=device-width"
-                />
-            </Head>
-
             {cupValues ? (
                 <>
                     <main className="text-center px-2">
